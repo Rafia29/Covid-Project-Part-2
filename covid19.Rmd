@@ -71,5 +71,5 @@ totals.plt(tsal) #This will show total confirmed, recovered, deaths and active c
 generate.SIR.model(tsc, 'France', tot.population= 65457901)
 
 ```
-
+#### The above analysis is done in order to perform SIR Model in part-3 for building the shiny app. This is a rough draft and can be change according to given suggestion.  
 
