@@ -1,8 +1,4 @@
 title: "Covid herd Immunity"
-output: 
-  html_document:
-    toc: true
-    toc_float: true
 
 # Part 1:
 In part 1 I have discussed about attaining herd immunity for covid. 
@@ -15,11 +11,11 @@ I studied about SIR model and wish to build a shiny app using SIR model at this 
 ## Data
 The datasets is collected from installing the package "covid19.analytics". 
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE}
 install.packages("covid19.analytics")
 library(covid19.analytics)
-```
 
+```
 ## Visualizations
 For this purpose we may use function uses ggplot to create visualizations that are easy to understand and customizeable.
 
@@ -50,32 +46,30 @@ As a part of building shiny app I have done some analysis which are as follows:
 
 ```{r message=FALSE}
 ag<- covid19.data(case='aggregated')
-View(ag)
 tsc<- covid19.data(case= 'ts-confirmed')
 ```
 
 #### Summary
-```
+```{r message=FALSE}
 report.summary(Nentries=5, graphical.output=F)
 report.summary(Nentries=5, graphical.output=T)
 ```
 #Two types of plots are shown, one is pie chart and another is bar chart for confirmed cases.
 
 #### Growth rate
-```
+```{r message=FALSE}
 growth.rate(tsc, geo.loc= 'France')
 ```
 #### Totals plot
-```
+```{r message=FALSE}
 tsal<- covid19.data(case= 'ts-ALL')
 totals.plt(tsal) #This will show total confirmed, recovered, deaths and active cases
 ```
 
 #### SIR MODEL
-```
+```{r message=FALSE}
 generate.SIR.model(tsc, 'France', tot.population= 65457901)
 
 ```
-
 
 
