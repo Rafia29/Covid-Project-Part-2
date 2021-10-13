@@ -1,0 +1,73 @@
+title: "Covid herd Immunity"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+
+# Part 1:
+In part 1 I have discussed about attaining herd immunity for covid. 
+
+# Part 2:
+This part I am planing to approach my final goal to attain herd immunity and build an interactive shiny app.
+I have been looking for some idea about attaing herd immunity.
+I studied about SIR model and wish to build a shiny app using SIR model at this stage.
+
+## Data
+The datasets is collected from installing the package "covid19.analytics". 
+
+```{r message=FALSE, warning=FALSE}
+install_packages("covid19.analytics)
+library(covid19.analytics)
+```{r}
+
+## Visualizations
+For this purpose we may use function uses ggplot to create visualizations that are easy to understand and customizeable.
+
+## Model 
+For modeling, we are going to use the model called SIR model. It is a widely known model for measuring the spread of infectious disease. In 1927, Kermack and McKendrick proposed the SIR model to study the outbreak of bubonic plague in Mumbai. SIR model is a simple yet foundational model to study the spread of disease. Members of a population transit continuously from group S, Susceptible, to group I, Infected, and then to group R, Removed or Recovered. 
+The SIR model is one of the simplest compartmental models, and many models are derivatives of this basic form. The model consists of three compartments:-
+
+S: The number of susceptible individuals. When a susceptible and an infectious individual come into "infectious contact", the susceptible individual contracts the disease and transitions to the infectious compartment.
+I: The number of infectious individuals. These are individuals who have been infected and are capable of infecting susceptible individuals.
+R for the number of removed (and immune) or deceased individuals. These are individuals who have been infected and have either recovered from the disease and entered the removed compartment, or died. 
+It is assumed that the number of deaths is negligible with respect to the total population. This compartment may also be called "recovered" or "resistant".
+This model is reasonably predictive for infectious diseases that are transmitted from human to human, and where recovery confers lasting resistance, such as measles, mumps and rubella.
+
+In nondimensional form, the system is written as 
+
+$S' = -\beta SI$
+$I'=(\beta S - \gamma)I$
+$R'=\gamma I$ 
+
+where $\beta$ and $\gamma$ are parameters and S(t), I(t), and R(t) denote the proportions of the population in the three groups. 
+
+However, the SIR model certainly has its limitation. One factor the model omits is the course of the infection. The recovery or death rate is constant and does not vary from day to day as curing technique improves. 
+Another assumption the model has is that the population is perfectly mixed, with no social or spatial aspects of the epidemic.
+
+As a part of building shiny app I have done some analysis which are as follows:
+
+##Analysis
+
+```{r message=FALSE}
+ag<- covid19.data(case='aggregated')
+View(ag)
+tsc<- covid19.data(case= 'ts-confirmed)
+
+#### Summary
+report.summary(Nentries=, geographical.output=T)
+#Two types of plots are shown, one is pie chart and another is bar chart for confirmed cases.
+
+#### Growth rate
+growth.rate(tsc, geo.loc= 'US')
+
+#### Totals plot
+tsal<- covid19.data(case= 'ts-ALL')
+totals.plt(tsal) #This will show total confirmed, recovered, deaths and active cases
+
+####world map
+live.map(tsc)
+
+#### SIR MODEL
+generate.SIR.model(tsc, 'US', tot.population= 333484850)
+
+```
