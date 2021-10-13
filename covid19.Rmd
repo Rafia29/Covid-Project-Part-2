@@ -16,9 +16,9 @@ I studied about SIR model and wish to build a shiny app using SIR model at this 
 The datasets is collected from installing the package "covid19.analytics". 
 
 ```{r message=FALSE, warning=FALSE}
-install_packages("covid19.analytics)
+install.packages("covid19.analytics")
 library(covid19.analytics)
-```{r}
+```
 
 ## Visualizations
 For this purpose we may use function uses ggplot to create visualizations that are easy to understand and customizeable.
@@ -51,23 +51,31 @@ As a part of building shiny app I have done some analysis which are as follows:
 ```{r message=FALSE}
 ag<- covid19.data(case='aggregated')
 View(ag)
-tsc<- covid19.data(case= 'ts-confirmed)
+tsc<- covid19.data(case= 'ts-confirmed')
+```
 
 #### Summary
-report.summary(Nentries=, geographical.output=T)
+```
+report.summary(Nentries=5, graphical.output=F)
+report.summary(Nentries=5, graphical.output=T)
+```
 #Two types of plots are shown, one is pie chart and another is bar chart for confirmed cases.
 
 #### Growth rate
-growth.rate(tsc, geo.loc= 'US')
-
+```
+growth.rate(tsc, geo.loc= 'France')
+```
 #### Totals plot
+```
 tsal<- covid19.data(case= 'ts-ALL')
 totals.plt(tsal) #This will show total confirmed, recovered, deaths and active cases
-
-####world map
-live.map(tsc)
+```
 
 #### SIR MODEL
-generate.SIR.model(tsc, 'US', tot.population= 333484850)
+```
+generate.SIR.model(tsc, 'France', tot.population= 65457901)
 
 ```
+
+
+
